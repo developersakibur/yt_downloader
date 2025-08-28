@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const checkServerStatus = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/status");
+      const res = await fetch("http://yt_downloader.local/api/status");
       if (res.ok) {
         return true;
       }
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     status.textContent = "Sending...";
     try {
       const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-      const res = await fetch("http://127.0.0.1:5000/api/download", {
+      const res = await fetch("http://yt_downloader.local/api/download", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: tabs[0].url, format })

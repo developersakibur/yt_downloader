@@ -1,6 +1,6 @@
 @echo off
 set HOST_NAME=com.sakib.ytdownloader
-set MANIFEST_PATH=D:\yt_downloader\server\native_host_manifest.json
+set MANIFEST_PATH=C:\yt_downloader\server\native_host_manifest.json
 
 rem Add registry key for Chrome
 REG ADD "HKEY_CURRENT_USER\Software\Google\Chrome\NativeMessagingHosts\%HOST_NAME%" /ve /t REG_SZ /d "%MANIFEST_PATH%" /f

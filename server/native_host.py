@@ -31,7 +31,7 @@ if __name__ == '__main__':
             # Start the Flask server as a detached process
             # This uses DETACHED_PROCESS flag for Windows
             subprocess.Popen([sys.executable, app_py_path], creationflags=subprocess.DETACHED_PROCESS)
-            send_message({'status': 'ok', 'message': 'Server starting command sent.', 'server_url': 'http://127.0.0.1:5000'})
+            send_message({'status': 'ok', 'message': 'Server starting command sent.', 'server_url': 'http://yt_downloader.local/'})
         else:
             send_message({'status': 'error', 'message': 'Invalid action.'})
     except Exception as e:

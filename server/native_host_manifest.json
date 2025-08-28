@@ -1,7 +1,7 @@
 {
   "name": "com.sakib.ytdownloader",
   "description": "Native host for YT Downloader extension",
-  "path": "D:\\yt_downloader\\server\\native_host.py",
+  "path": "C:\\yt_downloader\\server\\native_host.py",
   "type": "stdio",
   "allowed_origins": [
     "chrome-extension://minnigafmdjcapghnolhejibgfahdmha/"
