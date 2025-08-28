@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "YT Downloader",
+  "version": "1.0",
+  "description": "Downloads YouTube videos using a local server.",
+  "permissions": [
+    "tabs",
+    "nativeMessaging"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}
