@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>YT Downloader Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>YouTube Downloader</h1>
+    </div>
+
+    <div class="content">
+
+      <!-- Left Column: Input -->
+      <div class="input">
+
+        <!-- Form Section -->
+        <div class="form-box">
+          <h2>Download Form</h2>
+          <input id="videoUrl" type="text" placeholder="Enter YouTube video URL">
+          <div class="radio-row">
+            <div id="quantity-row" class="radio-box ">
+              <p>Quantity</p>
+              <div class="radio-group">
+                <label><input type="radio" name="quantity" value="25" checked> 25</label>
+                <label><input type="radio" name="quantity" value="50"> 50</label>
+                <label><input type="radio" name="quantity" value="75"> 75</label>
+                <label><input type="radio" name="quantity" value="100"> 100</label>
+              </div>
+            </div>
+            <div id="playlist-row" class="radio-box ">
+              <p>Playlist</p>
+              <div class="radio-group">
+                <label><input type="radio" name="playlist" value="no" checked> No</label>
+                <label><input type="radio" name="playlist" value="yes"> Yes</label>
+              </div>
+            </div>
+            <div id="formate-row" class="radio-box">
+              <p>Format</p>
+              <div class="radio-group">
+                <label><input type="radio" name="format" value="MP3"> MP3</label>
+                <label><input type="radio" name="format" value="3GP"> 3GP</label>
+                <label><input type="radio" name="format" value="MP4" checked> MP4</label>
+              </div>
+            </div>
+          </div>
+          <button id="downloadBtn" class="primarybtn">Download</button>
+        </div>
+
+        <!-- Task Section -->
+        <div class="form-box">
+          <h2>Tasks</h2>
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>URL</th>
+                <th>Qun</th>
+                <th>List</th>
+                <th>Fmt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Video</td>
+                <td>https://youtu.be/abc123</td>
+                <td>25</td>
+                <td>No</td>
+                <td>MP4</td>
+              </tr>
+              <tr>
+                <td>Audio</td>
+                <td>https://youtu.be/xyz456</td>
+                <td>50</td>
+                <td>Yes</td>
+                <td>MP3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Downloaded Folder Section -->
+        <div class="form-box">
+          <h2>Downloaded Folders</h2>
+          <table class="folder-table">
+            <thead>
+              <tr>
+                <th>Folder Name</th>
+                <th>Size</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="folder-row">
+                <td>Playlist_1</td>
+                <td>120MB</td>
+                <td><button>Delete</button></td>
+              </tr>
+              <tr class="folder-row">
+                <td>Single_Video</td>
+                <td>25MB</td>
+                <td><button>Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Output -->
+      <div class="output">
+        <h2>Output</h2>
+        <div id="progressBox">
+          Demo output scroll here...
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p>YT Downloader Dashboard</p>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>

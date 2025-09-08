@@ -1,0 +1,124 @@
+{
+  "tasks": [
+    {
+      "id": "20250909_055642",
+      "url": "https://www.youtube.com/results?search_query=jj+and+mikey",
+      "type": "unknown",
+      "format": "3GP",
+      "quantity": "no",
+      "playlist": "no",
+      "index": "multiple",
+      "folderpath": "downloads/20250909_055642",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_055623",
+      "url": "https://www.youtube.com/@manuchaudharyworld/videos",
+      "type": "channel_longs",
+      "format": "MP3",
+      "quantity": "no",
+      "playlist": "no",
+      "index": "multiple",
+      "folderpath": "downloads/20250909_055623",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_055546",
+      "url": "https://www.youtube.com/@manuchaudharyworld/shorts",
+      "type": "short",
+      "format": "MP3",
+      "quantity": "no",
+      "playlist": "no",
+      "index": "single",
+      "folderpath": "downloads/20250909_055546",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_055502",
+      "url": "https://www.youtube.com/shorts/CYukDvvrRno",
+      "type": "short",
+      "format": "MP4",
+      "quantity": "no",
+      "playlist": "no",
+      "index": "single",
+      "folderpath": "downloads/20250909_055502",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_054942",
+      "url": "https://www.youtube.com/shorts/X8DmQZvF7eY",
+      "type": "short",
+      "format": "MP4",
+      "quantity": "no",
+      "playlist": "no",
+      "index": "single",
+      "folderpath": "downloads/20250909_054942",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_054915",
+      "url": "https://www.youtube.com/shorts/X8DmQZvF7eY",
+      "type": "short",
+      "format": "3GP",
+      "quantity": "no",
+      "playlist": "no",
+      "index": "single",
+      "folderpath": "downloads/20250909_054915",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_054319",
+      "url": "https://www.youtube.com/watch?v=pq_3xuJY53s&list=RDn7jJaVe0yQ0&index=12",
+      "type": "long",
+      "format": "MP4",
+      "quantity": "no",
+      "playlist": "yes",
+      "index": "single",
+      "folderpath": "downloads/20250909_054319",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_054312",
+      "url": "https://www.youtube.com/watch?v=pq_3xuJY53s&list=RDn7jJaVe0yQ0&index=12",
+      "type": "long",
+      "format": "MP4",
+      "quantity": "no",
+      "playlist": "no",
+      "index": "single",
+      "folderpath": "downloads/20250909_054312",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_054253",
+      "url": "https://www.youtube.com/watch?v=pq_3xuJY53s&list=RDn7jJaVe0yQ0&index=12",
+      "type": "long",
+      "format": "3GP",
+      "quantity": "no",
+      "playlist": "yes",
+      "index": "single",
+      "folderpath": "downloads/20250909_054253",
+      "status": "pending",
+      "files": []
+    },
+    {
+      "id": "20250909_054243",
+      "url": "https://www.youtube.com/watch?v=pq_3xuJY53s&list=RDn7jJaVe0yQ0&index=12",
+      "type": "long",
+      "format": "MP3",
+      "quantity": "no",
+      "playlist": "yes",
+      "index": "single",
+      "folderpath": "downloads/20250909_054243",
+      "status": "pending",
+      "files": []
+    }
+  ]
+}
