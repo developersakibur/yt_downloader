@@ -1,6 +1,7 @@
 # server/app.py
-from flask import Flask, request, jsonify, send_from_directory, render_template, Response
-import os, json, re
+from flask import Flask, request, jsonify, render_template, Response
+import os, json, re, pytz
+from yt_dlp import YoutubeDL
 from datetime import datetime
 
 app = Flask(__name__, static_folder="../web", template_folder="../web", static_url_path="")
@@ -44,10 +45,21 @@ def save_db(db):
 
 
 DB_FILE = "app/database.json"
+COOKIES_PATH = "cookies/cookies.txt"
+MAIN_DOWNLOADS_FOLDER = "../yt_downloads"
 
-def create_session_folder(input_value, format_type):
-    input_value = input_value.strip()
+
+def now(date=False):
+    import pytz
+    bd_tz = pytz.timezone("Asia/Dhaka")
+    if date:
+        return datetime.now(bd_tz).strftime("%Y-%m-%d_%H-%M-%S")
+    return datetime.now(bd_tz).strftime("[%H-%M-%S]")
+
+def create_session_folder(url, format_type, task_type):
+    url = url.strip()
     format_type = format_type.upper()
+    task_type = task_type.lower()
     folder_name = ""
 
     # Try to get real metadata (playlist/channel titles)
@@ -97,11 +109,11 @@ def detect_type(url, playlist):
     if "youtube.com/results" in url:
         return "search"
     if re.match(r"https://www\.youtube\.com/@[^/]+/$", url):
-        return "channel_full"
+        return "channel-full"
     if "/videos" in url:
-        return "channel_longs"
+        return "channel-longs"
     if "/shorts" in url:
-        return "channel_shorts"
+        return "channel-shorts"
     return "unknown"
 
 @app.route("/api/download", methods=["POST"])
@@ -116,18 +128,18 @@ def api_download():
         return jsonify({"ok": False, "error": "url required"}), 400
 
     task_type = detect_type(url, playlist)
-    task_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    session_folder = create_session_folder(task_type, format_type)
+    task_id = now(date=True)
+    session_folder = create_session_folder(url, format_type, task_type)
 
     task = {
         "id": task_id,
         "url": url,
         "type": task_type,
         "format": format_type,
-        "quantity": quantity if task_type == "search" else "no",
+        "quantity": quantity if task_type == "search" else "False",
         "playlist": "True" if playlist else "False",
         "index": "single" if task_type in ["long", "short"] else "multiple",
-        "folderpath": f"downloads/{task_id}",
+        "folderpath": f"{session_folder}",
         "status": "pending",
         "files": []
     }
