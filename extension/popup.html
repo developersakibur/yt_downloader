@@ -1,15 +1,17 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>YTDownloader</title>
   <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
   <div id="container">
-    <a href="http://yt_downloader.local/" target="_blank" id="logo-link">
-      <img src="icon.png" id="logo">
-    </a>
+
+    <img src="icon.png" id="logo">
+
     <h2>YT Downloader</h2>
 
     <div id="server-down" class="hidden">
@@ -19,9 +21,15 @@
     <div id="not-youtube" class="hidden">
       <button id="go-youtube" href="https://www.youtube.com" class="primary">Go to YouTube</button>
     </div>
+    <div id="unsupported-link" class="hidden">
+      <h3>Unsupported YouTube URL</h3>
+      <p>
+        This YouTube page is not supported. <br><b> Only videos, shorts, playlists, search and channel supported</b>
+      </p>
+    </div>
 
     <div id="youtube-form" class="hidden">
-      <div id="formate-row"class="radio-group">
+      <div id="formate-row" class="radio-group">
         <label><input type="radio" name="format" value="MP3"> MP3</label>
         <label><input type="radio" name="format" value="3GP"> 3GP</label>
         <label><input type="radio" name="format" value="MP4" checked> MP4</label>
@@ -33,14 +41,15 @@
         <label><input type="radio" name="quantity" value="100"> 100</label>
       </div>
       <div id="playlist-row" class="radio-group hidden">
-        <label><input type="radio" name="playlist" value="no" checked> No</label>
-        <label><input type="radio" name="playlist" value="yes"> Yes</label>
+        <label><input type="radio" name="playlist" value="False" checked> No</label>
+        <label><input type="radio" name="playlist" value="True"> Yes</label>
       </div>
       <button id="download-btn" class="primary">Download</button>
       <div id="status" class="status"></div>
     </div>
-    
+
   </div>
   <script src="popup.js"></script>
 </body>
+
 </html>

@@ -21,7 +21,26 @@ def index():
 def api_status():
     return jsonify({"ok": True})
 
+def load_db():
+    if not os.path.exists(DB_FILE):
+        return {"tasks": []}
 
+    try:
+        with open(DB_FILE, "r", encoding="utf-8") as f:
+            content = f.read().strip()
+            if not content:
+                return {"tasks": []}  # blank file
+            return json.loads(content)
+    except (json.JSONDecodeError, FileNotFoundError):
+        return {"tasks": []}
+
+
+def save_db(db):
+    if "tasks" not in db or not isinstance(db["tasks"], list):
+        db["tasks"] = []
+    with open(DB_FILE, "w", encoding="utf-8") as f:
+        json.dump(db, f, indent=2)
+    print(f"[DB] Saved {len(db['tasks'])} tasks.")
 
 
 DB_FILE = "app/database.json"
@@ -62,43 +81,28 @@ def create_session_folder(input_value, format_type):
     print(f"✅ Session folder created: {session_folder}")
     return session_folder
 
-def load_db():
-    if not os.path.exists(DB_FILE):
-        return {"tasks": []}
-
-    try:
-        with open(DB_FILE, "r", encoding="utf-8") as f:
-            content = f.read().strip()
-            if not content:
-                return {"tasks": []}  # blank file
-            return json.loads(content)
-    except (json.JSONDecodeError, FileNotFoundError):
-        return {"tasks": []}
 
 
-def save_db(db):
-    if "tasks" not in db or not isinstance(db["tasks"], list):
-        db["tasks"] = []
-    with open(DB_FILE, "w", encoding="utf-8") as f:
-        json.dump(db, f, indent=2)
-    print(f"[DB] Saved {len(db['tasks'])} tasks.")
 
-
-def detect_type(url):
+def detect_type(url, playlist):
+    url = url.strip()
+    if ("watch?v=" in url or "youtu.be/" in url) and "list=" in url:
+        return "playlist" if playlist else "long"
+    if "watch?v=" in url or "youtu.be/" in url:
+        return "long"
     if "shorts" in url:
         return "short"
-    elif "watch?v=" in url or "youtu.be/" in url:
-        return "long"
-    elif "/videos" in url:
-        return "channel_longs"
-    elif "/shorts" in url:
-        return "channel_shorts"
-    elif re.match(r"https://www\.youtube\.com/@", url):
-        return "channel_all"
-    elif "playlist" in url or "list=" in url:
+    if "playlist" in url:
         return "playlist"
-    else:
-        return "unknown"
+    if "youtube.com/results" in url:
+        return "search"
+    if re.match(r"https://www\.youtube\.com/@[^/]+/$", url):
+        return "channel_full"
+    if "/videos" in url:
+        return "channel_longs"
+    if "/shorts" in url:
+        return "channel_shorts"
+    return "unknown"
 
 @app.route("/api/download", methods=["POST"])
 def api_download():
@@ -106,13 +110,14 @@ def api_download():
     url = data.get("url", "").strip()
     format_type = data.get("format", "MP4").upper()
     quantity = data.get("quantity", 25)
-    playlist = data.get("playlist", False)
+    playlist = data.get("playlist", False).lower() == "true"
 
     if not url:
         return jsonify({"ok": False, "error": "url required"}), 400
 
-    task_type = detect_type(url)
-    task_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+    task_type = detect_type(url, playlist)
+    task_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    session_folder = create_session_folder(task_type, format_type)
 
     task = {
         "id": task_id,
@@ -120,7 +125,7 @@ def api_download():
         "type": task_type,
         "format": format_type,
         "quantity": quantity if task_type == "search" else "no",
-        "playlist": playlist,
+        "playlist": "True" if playlist else "False",
         "index": "single" if task_type in ["long", "short"] else "multiple",
         "folderpath": f"downloads/{task_id}",
         "status": "pending",

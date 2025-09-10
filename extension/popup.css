@@ -74,3 +74,13 @@ h2 {
   color: #666;
   text-align: center;
 }
+#unsupported-link {
+  padding: 10px;
+  border: 1px solid #f0ad4e;
+  background-color: #fff3cd;
+  color: #856404;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
