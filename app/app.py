@@ -56,6 +56,11 @@ def now(date=False):
         return datetime.now(bd_tz).strftime("%Y-%m-%d_%H-%M-%S")
     return datetime.now(bd_tz).strftime("[%H-%M-%S]")
 
+def _probe_info(url):
+    opts = {"quiet": True, "logger": SilentLogger(), "cookiefile": COOKIES_PATH}
+    with YoutubeDL(opts) as ydl:
+        return ydl.extract_info(url, download=False)
+
 def create_session_folder(url, format_type, task_type):
     url = url.strip()
     format_type = format_type.upper()
@@ -65,7 +70,7 @@ def create_session_folder(url, format_type, task_type):
     # Try to get real metadata (playlist/channel titles)
     info = None
     try:
-        info = _probe_info(input_value)
+        info = _probe_info(url)
     except Exception as e:
         print(f"{now()} ⚠️ probe failed, fallback naming: {e}")
 
@@ -88,7 +93,7 @@ def create_session_folder(url, format_type, task_type):
     else:
         folder_name = f"Unknown_{format_type}_{now(date=True)}"
 
-    session_folder = os.path.join(main_downloads_folder, folder_name)
+    session_folder = os.path.join(MAIN_DOWNLOADS_FOLDER, folder_name)
     os.makedirs(session_folder, exist_ok=True)
     print(f"✅ Session folder created: {session_folder}")
     return session_folder
